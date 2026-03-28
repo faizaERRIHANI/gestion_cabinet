@@ -27,22 +27,10 @@ public class GestionCabinetApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        // 1. Créer et sauvegarder le patient D'ABORD
-        Patient p1 = new Patient();
-        p1.setNom("Hamidi");
-        p1.setPrenom("Ahmed");
-        p1.setEmail("hamidi@gmail.com");
-        p1.setTel("06545565656");
-        Patient savedPatient = patientRepository.save(p1); // récupérer le patient sauvegardé
+        patientRepository.save(new Patient(null, "Errihani", "Faiza", new Date(), "0654556565", "faiza@gmail.com", null));
+        patientRepository.save(new Patient(null, "Alami", "Mohamed", new Date(), "0612345678", "alami@gmail.com", null));
+        patientRepository.save(new Patient(null, "Benali", "Sara", new Date(), "0698765432", "sara@gmail.com", null));
 
-        // 2. Créer une consultation APRÈS avec le patient sauvegardé
-        Consultation c1 = new Consultation();
-        c1.setDateConsultation(new Date());
-        c1.setDiagnostic("Grippe saisonnière");
-        c1.setPatient(savedPatient); // utiliser l'objet retourné par save()
-        consultationRepository.save(c1);
-
-        System.out.println("✅ Patient et consultation sauvegardés avec succès !");
-        System.out.println("Patient ID : " + savedPatient.getId());
+        System.out.println("✅ Patients ajoutés !");
     }
 }
