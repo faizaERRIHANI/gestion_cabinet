@@ -2,34 +2,32 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Liste des Patients</title>
+    <title>Liste des Consultations</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="container mt-4">
-    <h2 class="mb-4">Liste des Patients</h2>
-    <a href="/patients/new" class="btn btn-primary mb-3">➕ Ajouter un patient</a>
+    <h2 class="mb-4">Liste des Consultations</h2>
+    <a href="/consultations/new" class="btn btn-primary mb-3">➕ Ajouter une consultation</a>
 
     <table class="table table-bordered table-striped table-hover">
         <thead class="table-dark">
         <tr>
             <th>ID</th>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>Tel</th>
-            <th>Email</th>
+            <th>Date</th>
+            <th>Diagnostic</th>
+            <th>Patient</th>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="patient : ${patients}">
-            <td th:text="${patient.id}"></td>
-            <td th:text="${patient.nom}"></td>
-            <td th:text="${patient.prenom}"></td>
-            <td th:text="${patient.tel}"></td>
-            <td th:text="${patient.email}"></td>
+        <tr th:each="c : ${consultations}">
+            <td th:text="${c.id}"></td>
+            <td th:text="${c.dateConsultation}"></td>
+            <td th:text="${c.diagnostic}"></td>
+            <td th:text="${c.patient.nom + ' ' + c.patient.prenom}"></td>
             <td>
-                <a th:href="@{/patients/delete/{id}(id=${patient.id})}"
+                <a th:href="@{/consultations/delete/{id}(id=${c.id})}"
                    class="btn btn-danger btn-sm"
                    onclick="return confirm('Confirmer la suppression ?')">
                     🗑 Supprimer
