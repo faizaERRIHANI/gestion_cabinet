@@ -22,6 +22,7 @@ public class Patient {
     private String tel;
     private String email;
 
-    @OneToMany(mappedBy = "patient", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL, orphanRemoval = true) // ✅ supprime les consultations automatiquement
     private List<Consultation> consultations;
 }
